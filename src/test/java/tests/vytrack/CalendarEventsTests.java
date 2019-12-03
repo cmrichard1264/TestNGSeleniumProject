@@ -53,6 +53,12 @@ public class CalendarEventsTests {
     public void test2(){
         Assert.assertTrue(driver.findElement(By.cssSelector("[title='Create Calendar event']")).isDisplayed());
     }
+
+
+
+
+
+
     @AfterMethod
     public void teardown(){
         driver.quit();

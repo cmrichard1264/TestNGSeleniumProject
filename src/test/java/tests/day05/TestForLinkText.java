@@ -2,6 +2,7 @@ package tests.day05;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import utils.BrowserFactory;
 
 
@@ -13,6 +14,8 @@ public class TestForLinkText {
         driver.get("http://practice.cybertekschool.com/");
         driver.findElement(By.linkText("Autocomplete")).click();
         Thread.sleep(3000);
+
+
 
         driver.quit();
     }
