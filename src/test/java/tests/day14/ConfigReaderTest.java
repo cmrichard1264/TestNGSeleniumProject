@@ -13,14 +13,15 @@ public class ConfigReaderTest {
        #credentials
        user_name=storemanager85
        password=UserUser123*/
+
     @Test
     public void test1() {
-        String expectedBrowse = "chrome";
+        String expectedBrowser = "chrome";
         //we write keys in "key" as a String
         //as a return, you will get value
         //key=value
         String actualBrowser = ConfigurationReader.getProperty("browser");
-        Assert.assertEquals(actualBrowser, expectedBrowse);
+        Assert.assertEquals(actualBrowser, expectedBrowser);
         System.out.println(ConfigurationReader.getProperty("url"));
         System.out.println("Username: "+ConfigurationReader.getProperty("user_name"));
         System.out.println("Password: "+ConfigurationReader.getProperty("password"));

@@ -32,17 +32,4 @@ public class LoginTests extends TestBase {
         Assert.assertEquals(Driver.get().getTitle(), "Dashboard");
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

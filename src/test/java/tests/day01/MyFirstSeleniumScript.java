@@ -12,6 +12,10 @@ public class MyFirstSeleniumScript {
         //get method allows to open the website
         driver.get("http://google.com");
 
+
+
+
+
         //getTitle();   is a method to read page title
 
     }
