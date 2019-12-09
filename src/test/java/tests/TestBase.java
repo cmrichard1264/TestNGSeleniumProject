@@ -36,7 +36,7 @@ public abstract class TestBase  {
     public void beforeTest(){
         //location of report
         //going to ne next to target folder, test-output folder
-        String filePath = System.getProperty("user.dir")+"/test/output/report.html";
+        String filePath = System.getProperty("user.dir")+"/test-output/report.html";
         extentReports = new ExtentReports();
         extentHtmlReporter = new ExtentHtmlReporter(filePath);
         extentReports.attachReporter(extentHtmlReporter);
