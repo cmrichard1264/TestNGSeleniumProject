@@ -30,8 +30,8 @@ public abstract class TestBase  {
     protected static ExtentTest extentTest;
 
     @BeforeTest
-    @Parameters("test")
-    public void beforeTest(@Optional String test){
+    @Parameters({"test", "env_url"})
+    public void beforeTest(@Optional String test, @Optional String env_url){
         //location of report
         //going to ne next to target folder, test-output folder
         String reportName = "report";
@@ -44,7 +44,11 @@ public abstract class TestBase  {
         extentReports.attachReporter(extentHtmlReporter);
         extentHtmlReporter.config().setReportName("Vytrack Test Results");
         //system information
-        extentReports.setSystemInfo("Environment", "QA1");
+        String env = ConfigurationReader.getProperty("url");
+        if(env_url != null){
+            env = env_url;
+        }
+        extentReports.setSystemInfo("Environment", env);
         extentReports.setSystemInfo("Browser", ConfigurationReader.getProperty("browser"));
         extentReports.setSystemInfo("OS", System.getProperty("os.name"));
     }
