@@ -58,8 +58,12 @@ public abstract class TestBase  {
 
 
     @BeforeMethod
-    public void setup(){
+    @Parameters("env_url")
+    public void setup(@Optional String env_url){
         String url = ConfigurationReader.getProperty("url");
+        if(env_url != null){
+            url = env_url;
+        }
         Driver.get().get(url);
     }
 
