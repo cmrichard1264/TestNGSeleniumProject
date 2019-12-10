@@ -90,6 +90,8 @@ public class BasePage {
         WebElement subModule = Driver.get().findElement(By.xpath(subModuleLocator));
         wait.until(ExpectedConditions.visibilityOf(subModule));
         subModule.click();
+
+        BrowserUtils.waitForPageToLoad(5);
     }
 
     /**
