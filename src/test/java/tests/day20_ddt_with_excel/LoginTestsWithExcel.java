@@ -38,21 +38,6 @@ public class LoginTestsWithExcel extends TestBase {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public static void main(String[] args) {
 
         ExcelUtil qa2 = new ExcelUtil("vytrack_testusers.xlsx", "QA2-short");
