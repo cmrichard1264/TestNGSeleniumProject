@@ -5,6 +5,7 @@ import pages.CreateCarPage;
 import pages.LoginPage;
 import pages.VehiclesPage;
 import tests.TestBase;
+import utils.BrowserUtils;
 import utils.ConfigurationReader;
 import utils.ExcelUtil;
 
@@ -59,12 +60,14 @@ public class CreateCarTests extends TestBase {
 
         List<Map<String, String>> testData = excelUtil.getDataList();
 
-        createCarPage.licensePlateElement.sendKeys();
-
-
-
-
-
+        createCarPage.licensePlateElement.sendKeys(testData.get(0).get("License Plate"));
+        createCarPage.driverElement.sendKeys(testData.get(0).get("Driver"));
+        createCarPage.modelYearElement.sendKeys(testData.get(0).get("Model Year"));
+        createCarPage.colorElement.sendKeys(testData.get(0).get("Color"));
+        loginPage.waitUntilLoaderMaskDisappear();
+        createCarPage.saveAndCloseButtonElement.click();
+        BrowserUtils.wait(3);
+        extentTest.info("Created a new car");
     }
 
     }
