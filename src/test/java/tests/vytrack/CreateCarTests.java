@@ -5,6 +5,11 @@ import pages.CreateCarPage;
 import pages.LoginPage;
 import pages.VehiclesPage;
 import tests.TestBase;
+import utils.ConfigurationReader;
+import utils.ExcelUtil;
+
+import java.util.List;
+import java.util.Map;
 
 public class CreateCarTests extends TestBase {
     @Test(description = "Create some random car")
@@ -26,6 +31,40 @@ public class CreateCarTests extends TestBase {
         createCarPage.saveAndCloseButtonElement.click();
 
         extentTest.pass("New car was created");
+    }
+
+
+    @Test(description = "Create a car by reading test data from Excel file")
+    public void createCarTest(){
+        extentTest = extentReports.createTest("Create a car by reading test data from Excel file");
+
+        LoginPage loginPage = new LoginPage();
+        VehiclesPage vehiclesPage = new VehiclesPage();
+        CreateCarPage createCarPage = new CreateCarPage();
+
+        String username = ConfigurationReader.getProperty("user_name");
+        String password = ConfigurationReader.getProperty("password");
+
+        loginPage.login(username, password);
+
+        loginPage.navigateTo("Fleet", "Vehicles");
+
+        loginPage.waitUntilLoaderMaskDisappear();
+
+        vehiclesPage.clickToCreateACar();
+
+        loginPage.waitUntilLoaderMaskDisappear();
+
+        ExcelUtil excelUtil = new ExcelUtil("cars.xlsx", "cars");
+
+        List<Map<String, String>> testData = excelUtil.getDataList();
+
+        createCarPage.licensePlateElement.sendKeys();
+
+
+
+
+
     }
 
     }
