@@ -38,7 +38,7 @@ public abstract class TestBase  {
         if(test != null){
             reportName = test;
         }
-        String filePath = System.getProperty("user.dir")+"/test-output/"+reportName+".html";
+        String filePath = System.getProperty("user.dir")+"/test-output/"+reportName+".html";  // or .png
         extentReports = new ExtentReports();
         extentHtmlReporter = new ExtentHtmlReporter(filePath);
         extentReports.attachReporter(extentHtmlReporter);
@@ -65,6 +65,8 @@ public abstract class TestBase  {
     @Parameters("env_url")
     public void setup(@Optional String env_url){
         String url = ConfigurationReader.getProperty("url");
+        //if name parameter was set, then use it
+        //if it's null that means it was not set
         if(env_url != null){
             url = env_url;
         }
@@ -79,8 +81,11 @@ public abstract class TestBase  {
             extentTest.fail(result.getThrowable());
             try {
                 //BrowserUtils.getScreenshot(result.getName()) - takes screenshot and returns location of that screenshot
+                //this method throws IOException (which is checked exception)
+                //any checked exception must be handled
                 extentTest.addScreenCaptureFromPath(BrowserUtils.getScreenshot(result.getName()));
             } catch (IOException e) {
+                //print error info
                 e.printStackTrace();
             }
         }else if(result.getStatus() == ITestResult.SKIP){

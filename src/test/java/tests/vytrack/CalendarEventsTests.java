@@ -19,6 +19,8 @@ import java.util.concurrent.TimeUnit;
 public class CalendarEventsTests {
     private WebDriver driver;
     private WebDriverWait wait;
+
+
     @BeforeMethod
     public void setup(){
         driver = BrowserFactory.getDriver("chrome");
@@ -31,7 +33,27 @@ public class CalendarEventsTests {
         driver.get("https://qa1.vytrack.com/");
         driver.findElement(By.id("prependedInput")).sendKeys("storemanager85");
         driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123", Keys.ENTER);
-        BrowserUtils.wait(3);
+
+
+        WebElement loaderMask= null;
+
+        if(driver.findElements(By.cssSelector("div[class='loader-mask shown']")).size()>0) {
+            loaderMask = driver.findElement(By.cssSelector("div[class='loader-mask shown']"));
+            wait.until(ExpectedConditions.invisibilityOf(loaderMask));
+        }
+
+        WebElement activitiesElement = driver.findElement(By.linkText("Activities"));
+        wait.until(ExpectedConditions.visibilityOf(activitiesElement));
+        wait.until(ExpectedConditions.elementToBeClickable(activitiesElement));
+        activitiesElement.click();
+
+        WebElement calendarEventsElement = driver.findElement(By.linkText("Calendar Events"));
+        wait.until(ExpectedConditions.visibilityOf(calendarEventsElement));
+        wait.until(ExpectedConditions.elementToBeClickable(calendarEventsElement));
+        calendarEventsElement.click();
+
+        wait.until(ExpectedConditions.invisibilityOf(loaderMask));
+        /*BrowserUtils.wait(3);
         driver.findElement(By.linkText("Activities")).click();
         //wait.until(ExpectedConditions.visibilityOf(activitiesElement));
         //wait.until(ExpectedConditions.elementToBeClickable(activitiesElement));
@@ -41,8 +63,11 @@ public class CalendarEventsTests {
         //wait.until(ExpectedConditions.elementToBeClickable(calendarEventsElement));
         //calendarEventsElement.click();
         WebElement loaderMask = driver.findElement(By.cssSelector("div[class='loader-mask shown']"));
-        wait.until(ExpectedConditions.invisibilityOf(loaderMask));
+        wait.until(ExpectedConditions.invisibilityOf(loaderMask));*/
     }
+
+
+
     @Test(description = "Verify page subtitle")
     public void test1(){
         String expectedSubtitle = "All Calendar Events";

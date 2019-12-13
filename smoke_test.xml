@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Smoke test">
     <test name="Smoke test on QA1">
-        <parameter name="test" value="smoke_test"></parameter>
+        <parameter name="test" value="smoke_test_qa1"></parameter>
         <parameter name="env_url" value="https://qa1.vytrack.com/user/login"></parameter>
         <classes>
             <class name="tests.vytrack.SmokeTest"/>

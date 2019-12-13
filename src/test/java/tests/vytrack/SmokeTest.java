@@ -11,11 +11,18 @@ public class SmokeTest extends TestBase {
     @Test(dataProvider = "navigationInfo")
     public void smokeTest(String moduleName, String subModuleName, String pageSubTitle){
         extentTest = extentReports.createTest("Verify that page subtitle is equals to "+pageSubTitle);
+
         LoginPage loginPage = new LoginPage();
         loginPage.login("storemanager85", "UserUser123");
+
         loginPage.navigateTo(moduleName, subModuleName);
-        //loginPage.waitUntilLoaderMaskDisappear();
+
+        loginPage.waitUntilLoaderMaskDisappear();
+
+       loginPage.waitForPageSubTitle(pageSubTitle);
+
         Assert.assertEquals(loginPage.getPageSubTitle(), pageSubTitle);
+
         extentTest.pass("Verified that page subtitle '"+pageSubTitle+"' is displayed");
     }
 
