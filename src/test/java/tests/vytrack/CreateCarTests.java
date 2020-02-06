@@ -25,12 +25,11 @@ public class CreateCarTests extends TestBase {
         loginPage.waitUntilLoaderMaskDisappear();
         vehiclesPage.clickToCreateACar();
         loginPage.waitUntilLoaderMaskDisappear();
-        createCarPage.licensePlateElement.sendKeys("Random");
-        createCarPage.selectTags("Compact");
-
-        createCarPage.selectFuelType("Diesel");
+        createCarPage.licensePlateElement.sendKeys("Mercedes CLS400");
+        createCarPage.selectTags("Sedan");
+        createCarPage.selectFuelType("Gas");
+        loginPage.waitUntilLoaderMaskDisappear();
         createCarPage.saveAndCloseButtonElement.click();
-
         extentTest.pass("New car was created");
     }
 
@@ -69,8 +68,7 @@ public class CreateCarTests extends TestBase {
         BrowserUtils.wait(3);
         extentTest.info("Created a new car");
     }
-
-    }
+}
 
 
 

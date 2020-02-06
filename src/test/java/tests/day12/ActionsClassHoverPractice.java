@@ -37,6 +37,7 @@ public class ActionsClassHoverPractice {
         String actualText = textOfImageElement.getText();
         Assert.assertEquals(actualText, expectedText);
     }
+
     @Test(description = "Verify all images")
     public void test2() {
         Actions action = new Actions(driver);
@@ -48,6 +49,11 @@ public class ActionsClassHoverPractice {
             Assert.assertEquals(name, "name: user"+i);
         }
     }
+
+
+
+
+
     @AfterMethod
     public void teardown() {
 
